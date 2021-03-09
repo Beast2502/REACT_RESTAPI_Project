@@ -50,14 +50,13 @@ class AddPost extends Component {
             RegionalDesc: "RegionalDesc ",
             country: '', 
             region: '' ,
-
+            image1: " "
             
         };
         this.handleHeadline = this.handleHeadline.bind(this);
         this.handleRegionalDesc = this.handleRegionalDesc.bind(this);
         this.handleEnglishDesc = this.handleEnglishDesc.bind(this);
-        this.handleCountry = this.handleCountry.bind(this);
-        this.handleRegion = this.handleRegion.bind(this);
+        this.handleImage1 = this.handleImage1.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
       }
@@ -77,16 +76,13 @@ class AddPost extends Component {
         this.setState({EnglishDesc: event.target.value})
     }
 
-    handleCountry(event){
-        this.setState({country: event.target.value})
+    handleImage1(event){
+        this.setState({image1: event.target.value})
     }
-
-    handleRegion(event){
-        this.setState({region : event.target.value})
-    }
+    
 
       handleSubmit(event){
-          console.log(this.state.Headline,this.state.RegionalDesc,this.state.EnglishDesc,this.state.country,this.state.region);
+          console.log(this.state.Headline,this.state.RegionalDesc,this.state.EnglishDesc,this.state.country,this.state.region,this.state.image1);
           event.preventDefault()
       }
 
@@ -100,7 +96,7 @@ class AddPost extends Component {
     
     render() {
         const {classes} = this.props;
-        
+        const { country, region } = this.state;
         return (
             <div className={classes.container}>
                 <Form className={classes.formControl} onSubmit={this.handleSubmit}>
@@ -117,7 +113,7 @@ class AddPost extends Component {
                     </FormikTextField>
 
                     <div className={classes.imageContainer}>
-                        <input type="file" ></input>
+                        <input type="file" onChange={this.handleImage1} ></input>
                         <Button
                         variant="container"
                         color="primary"
@@ -171,14 +167,14 @@ class AddPost extends Component {
                     
                          <CountryDropdown
                             className={classes.selectBox}
-                            value={this.state.country}
-                            onChange={this.handleCountry} />
+                            value={country}
+                            onChange={(val) => this.selectCountry(val)} />
 
                             <RegionDropdown
                             className={classes.selectBox}
-                            country={this.state.country}
-                            value={this.state.region}
-                            onChange={this.handleRegion} />
+                            country={country}
+                            value={region}
+                            onChange={(val) => this.selectRegion(val)} />
                     
 
                    
