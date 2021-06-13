@@ -1,0 +1,46 @@
+
+.blocking {
+    border-radius: 10px;
+    margin: 5px;
+    background-color: rgb(129, 139, 231);
+    padding:20px;
+    height: 100px auto;
+    width: 500px;
+    color: white;
+    margin-left: 20px;
+    
+}
+
+.display{
+    display: inline-flex;
+}
+
+.img{
+        border-radius: 50px;
+        width: 300px;
+        border-color: rgb(20, 64, 187);
+        border: 5px;
+        background: rgb(243, 89, 89);
+        padding: 30px;
+        padding-left: 45px;
+        margin: 5px;
+        margin-left: 20px;
+}
+
+.heading{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+    color: rgb(255, 255, 255);
+    background-color: black;
+    border-radius: 50px;
+    padding-left: 50px;
+}
+
+.content{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: medium;
+}
+.content1{
+    text-decoration: underline;
+}
+
