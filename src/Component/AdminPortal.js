@@ -3,13 +3,16 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
-import {ThemeProvider, withStyles} from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
+
+//axios 
+import axios from 'axios';
 
 // components 
 import Resume from './Resume';
 import AddPost from './AddPost';
 import Bloglist from './Bloglist';
-
+import Blog from './Blog';
 
 //routes 
 import {Switch,Route,NavLink} from 'react-router-dom';
@@ -87,6 +90,7 @@ class AdminPortal extends Component {
             Headline: "",
             value: '',
             arr:[],
+            data1: []
            
            
         }
@@ -94,7 +98,18 @@ class AdminPortal extends Component {
         this.handleValue = this.handleValue.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
+       
+
     }
+
+    componentDidMount(){
+        
+        axios.get('https://s3-ap-southeast-1.amazonaws.com/he-public-data/TopRamen8d30951.json')
+        .then((res)=>{
+            this.setState({data1: res.data})
+        })
+    }
+
 
     handleHeadLine(event){
         this.setState({Headline:event.target.value})
@@ -139,7 +154,7 @@ class AdminPortal extends Component {
     }
     render() {
         const {classes} = this.props;
-
+        console.log("data in home page",this.state.data1)
       
 
         return (
@@ -175,13 +190,13 @@ class AdminPortal extends Component {
                         <NavLink to="/">Resume</NavLink>
                     </ListItem>
                     <ListItem>
-                        <NavLink to="/blogs">Blogs</NavLink>
+                        <NavLink to="/blogs"> Static Blogs</NavLink>
                     </ListItem>
                    <ListItem>
                    <NavLink to ="/blog/new">Add Blog</NavLink>    
                    </ListItem>
                    <ListItem>
-                   <NavLink to ="/blogs/Name_of_the_Blog">Blogs Added</NavLink>    
+                   <NavLink to ="/blogs/Name_of_the_Blog">Dynamic Blogs</NavLink>    
                    </ListItem>
                 </List>
                 </Drawer>
@@ -189,7 +204,7 @@ class AdminPortal extends Component {
                     <div className={classes.appbarSpacer}/>
                         <Switch>
                             <Route exact path ="/" ><Resume/></Route>
-                            <Route exact path ="/blogs" component={<Bloglist data={this.state.arr} />}> </Route>
+                            <Route exact path ="/blogs" ><Blog data={this.state.data1}/> </Route>
                             <Route exact path = "/blog/new"> <AddPost handleHeadLine ={this.handleHeadLine}  handleValue={this.handleValue} handleSubmit={this.handleSubmit} /> </Route>
                             <Route exact path = "/blogs/Name_of_the_Blog"> <Bloglist data={this.state.arr}/></Route>
                         </Switch>
