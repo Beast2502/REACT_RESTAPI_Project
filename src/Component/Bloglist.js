@@ -9,7 +9,7 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 500,
     margin:50,
-    marginLeft: 100,
+    marginLeft: 280,
     height:150,
     background: '#f4c2c2'
   },
@@ -50,6 +50,7 @@ export default function Bloglist(props) {
 
   return (
       <>
+      <div><center>Dynamic Blogs</center></div>
     {dataBlog}
   </>
   );

@@ -27,12 +27,16 @@ class Resume extends Component {
                     <div className="blocking">
                         <div className="heading">Education</div>
                         <div className="content content1">High School</div>
-                        <div className="content">Maharana Pratap Education Centre CGPA: 9.2</div>
+                        <div className="content">Maharana Pratap Education Centre</div>
+                        <div className="content">CGPA: 9.2</div>
                         <div className="content content1">Intermediate</div>
-                        <div className="content">Maharana Pratap Education Centre Percentage: 73.2</div>
+                        <div className="content">Maharana Pratap Education Centre</div>
+                        <div className="content">Percentage: 73.2</div>
                         <div className="content content1">Graduation</div>
                         <div className="content">Pranveer Singh Institute Of Technology</div>
-                        <div className="content">Computer Science and Engineering  Percentage: 64.2%</div>
+                        <div className="content">Computer Science and Engineering</div>
+                        <div className="content">Percentage: 64.2%</div>
+                    
                     </div>
 
 

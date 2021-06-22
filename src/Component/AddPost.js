@@ -58,7 +58,7 @@ class AddPost extends Component {
         
         return (
             <div>
-                Add the Post
+                <div><center>Add Post</center></div>
                 <form onSubmit={this.props.handleSubmit}>
                     HEAD LINE
                     <input
