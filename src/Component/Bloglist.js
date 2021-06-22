@@ -1,57 +1,67 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { Component } from 'react';
 
-const useStyles = makeStyles({
+const styles = theme =>({
   root: {
     maxWidth: 500,
-    margin:50,
+    margin: 50,
     marginLeft: 280,
-    height:150,
+    height: 150,
     background: '#f4c2c2'
   },
   media: {
     height: 140,
   },
-});
 
-export default function Bloglist(props) {
-  const classes = useStyles();
-  console.log("Blog Page ",props.data)
+})
 
-  const dataBlog = props.data.map((data)=>{
-      if(data != null){
+class Bloglist extends Component {
+
+  render(){
+    const { classes } = this.props;
+    const dataBlog = this.props.data.map((data) => {
+      if (data != null) {
         return (
           <Card className={classes.root}>
-          <CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {data.headline}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-               {data.value}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+            <CardActionArea>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {data.headline}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {data.value}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
         )
-
-      
+  
+  
       }
       else {
         <h1><center>No blogs Added</center></h1>
       }
-      
+  
+  
+    })
+  
 
-  })
-
-  return (
+    return(
       <>
       <div><center>Dynamic Blogs</center></div>
-    {dataBlog}
-  </>
-  );
+      {dataBlog}
+    </>
+    )
+  }
 }
+
+
+
+
+export default withStyles(styles)(Bloglist)

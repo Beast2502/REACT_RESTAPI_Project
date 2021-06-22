@@ -18,6 +18,22 @@ const styles = theme => ({
   media: {
     height: 140,
   },
+
+  input:{
+    marginLeft: 400,
+    marginTop: 20,
+    marginRight: 10,
+    height: 40,
+    width : 200,
+    borderRadius : 5
+  },
+  button:{
+    border: 'none',
+    borderRadius : 5 ,
+    background: '#FF033E',
+    height : 40,
+    width : 70
+  }
 });
 
 
@@ -29,7 +45,7 @@ class Blog extends Component {
     this.state = {
       data: this.props.data,
       search: '',
-      searchValue : ''
+      searchValue: ''
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,7 +61,7 @@ class Blog extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.setState({
-        search : this.state.searchValue
+      search: this.state.searchValue
     })
   }
   render() {
@@ -57,7 +73,7 @@ class Blog extends Component {
 
       return data.Brand.toLowerCase().includes(lowerSearch);
     }
-  
+
     const dataBlog = this.state.data.filter(checkData).map((data) => {
 
       return (
@@ -87,8 +103,8 @@ class Blog extends Component {
       <div>
         <div><center>Static Blogs</center></div>
 
-        <input onChange={this.handleChange}></input>
-        <button type='submit' onClick={this.handleSubmit}>Search</button>
+        <input className={classes.input} onChange={this.handleChange}></input>
+        <button className={classes.button} type='submit' onClick={this.handleSubmit}>Search</button>
 
         {dataBlog}
       </div>

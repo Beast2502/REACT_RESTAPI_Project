@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 //axios 
 import axios from 'axios';
@@ -15,7 +15,7 @@ import Bloglist from './Bloglist';
 import Blog from './Blog';
 
 //routes 
-import {Switch,Route,NavLink} from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
 //Drawer imports 
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -26,190 +26,190 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Divider from '@material-ui/core/Divider'
 
 const drawerWidth = 240;
-const styles = theme =>({
-    root:{
-        display:'flex'
+const styles = theme => ({
+    root: {
+        display: 'flex'
     },
-    toolbar:{
-       paddingRight: 24 
+    toolbar: {
+        paddingRight: 24
     },
-    appBar:{
-        zIndex : theme.zIndex.drawer +1,
-        transition : theme.transitions.create(['width','margin'],{
-            easing:theme.transitions.easing.sharp,
+    appBar: {
+        zIndex: theme.zIndex.drawer + 1,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration
         }),
     },
-    appBarShift:{
-        transition : theme.transitions.create(['width','margin'],{
-            easing:theme.transitions.easing.sharp,
+    appBarShift: {
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen
         }),
-        marginLeft:drawerWidth,
+        marginLeft: drawerWidth,
         width: `calc(100% - ${drawerWidth}px)`
 
     },
-    appbarSpacer : theme.mixins.toolbar,
-    drawerPaper :{
-        position : "relative",
-        whitespace : "noWrap",
-        width : drawerWidth,
-        transition:theme.transitions.create('width',{
+    appbarSpacer: theme.mixins.toolbar,
+    drawerPaper: {
+        position: "relative",
+        whitespace: "noWrap",
+        width: drawerWidth,
+        transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
-            duration:theme.transitions.duration.enteringScreen
+            duration: theme.transitions.duration.enteringScreen
         })
     },
-    drawerPaperClose:{
+    drawerPaperClose: {
         overFlowX: 'hidden',
         width: theme.spacing.unit * 7,
-        transition:theme.transitions.create('width',{
+        transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
-            duration:theme.transitions.duration.leavingScreen
+            duration: theme.transitions.duration.leavingScreen
         })
     },
-    toolbarIcon :{
+    toolbarIcon: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        padding : '0 8px',
+        padding: '0 8px',
         ...theme.mixins.toolbar
     },
 
-    content:{
-        flexGrow:1,
-        padding:theme.spacing.units * 3,
-        height:'100vh',
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing.units * 3,
+        height: '100vh',
         overflow: 'auto'
     }
 })
 class AdminPortal extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             open: true,
             Headline: "",
             value: '',
-            arr:[],
+            arr: [],
             data1: []
-           
-           
+
+
         }
         this.handleHeadLine = this.handleHeadLine.bind(this);
         this.handleValue = this.handleValue.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
-       
+
 
     }
 
-    componentDidMount(){
-        
+    componentDidMount() {
+
         axios.get('https://s3-ap-southeast-1.amazonaws.com/he-public-data/TopRamen8d30951.json')
-        .then((res)=>{
-            this.setState({data1: res.data})
-        })
+            .then((res) => {
+                this.setState({ data1: res.data })
+            })
     }
 
 
-    handleHeadLine(event){
-        this.setState({Headline:event.target.value})
+    handleHeadLine(event) {
+        this.setState({ Headline: event.target.value })
     }
 
-    handleValue(event){
+    handleValue(event) {
         const textareaLineHeight = 24;
         const { minRows, maxRows } = this.state;
         const previousRows = event.target.rows;
-          event.target.rows = minRows; // reset number of rows in textarea 
+        event.target.rows = minRows; // reset number of rows in textarea 
         const currentRows = ~~(event.target.scrollHeight / textareaLineHeight);
 
         if (currentRows === previousRows) {
-                event.target.rows = currentRows;
-            }
-    
+            event.target.rows = currentRows;
+        }
+
         if (currentRows >= maxRows) {
-                event.target.rows = maxRows;
-                event.target.scrollTop = event.target.scrollHeight;
-            }
-        this.setState({value:event.target.value})
+            event.target.rows = maxRows;
+            event.target.scrollTop = event.target.scrollHeight;
+        }
+        this.setState({ value: event.target.value })
     }
 
-    handleSubmit(event){
-        
-        let blog={
+    handleSubmit(event) {
+
+        let blog = {
             headline: this.state.Headline,
-            value: this.state.value 
-          }
+            value: this.state.value
+        }
 
         this.state.arr.push(blog);
         console.log(this.state.arr);
         event.preventDefault();
     }
 
-    handleDrawerOpen = (e)=> {
-        this.setState({open:true})
+    handleDrawerOpen = (e) => {
+        this.setState({ open: true })
     }
 
-    handleDrawerClose =(e)=>{
-        this.setState({open:false})
+    handleDrawerClose = (e) => {
+        this.setState({ open: false })
     }
     render() {
-        const {classes} = this.props;
-        console.log("data in home page",this.state.data1)
-      
+        const { classes } = this.props;
+        console.log("data in home page", this.state.data1)
+
 
         return (
             <div className={classes.root}>
-                
-                <AppBar className={classNames(classes.appBar, this.state.open  && classes.appBarShift)}>
+
+                <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
                     <Toolbar className={classes.toolbar}>
-                        <IconButton onClick={this.handleDrawerOpen}><MenuIcon/></IconButton>
+                        <IconButton onClick={this.handleDrawerOpen}><MenuIcon /></IconButton>
                         <Typography
                             component="h1"
-                            variant = "h6"
-                            color = "inherit"
+                            variant="h6"
+                            color="inherit"
                             noWrap
                         >
-                        Xebia Frontend Contest
+                            Xebia Frontend Contest
                         </Typography>
                     </Toolbar>
                 </AppBar>
                 <Drawer
-                classes={{
-                    paper :classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose)
-                }}
-                 variant= 'permanent'
-                 open={true}
+                    classes={{
+                        paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose)
+                    }}
+                    variant='permanent'
+                    open={true}
                 >
                     <div className={classes.toolbarIcon}>
-                        <IconButton onClick={this.handleDrawerClose}><ChevronLeftIcon/> </IconButton>
+                        <IconButton onClick={this.handleDrawerClose}><ChevronLeftIcon /> </IconButton>
                     </div>
-                    <Divider/>
-                    
-                <List>
-                    <ListItem>
-                        <NavLink to="/">Resume</NavLink>
-                    </ListItem>
-                    <ListItem>
-                        <NavLink to="/blogs"> Static Blogs</NavLink>
-                    </ListItem>
-                   <ListItem>
-                   <NavLink to ="/blog/new">Add Blog</NavLink>    
-                   </ListItem>
-                   <ListItem>
-                   <NavLink to ="/blogs/Name_of_the_Blog">Dynamic Blogs</NavLink>    
-                   </ListItem>
-                </List>
+                    <Divider />
+
+                    <List>
+                        <ListItem>
+                            <NavLink to="/">Resume</NavLink>
+                        </ListItem>
+                        <ListItem>
+                            <NavLink to="/blogs"> Static Blogs</NavLink>
+                        </ListItem>
+                        <ListItem>
+                            <NavLink to="/blog/new">Add Blog</NavLink>
+                        </ListItem>
+                        <ListItem>
+                            <NavLink to="/blogs/Name_of_the_Blog">Dynamic Blogs</NavLink>
+                        </ListItem>
+                    </List>
                 </Drawer>
                 <main className={classes.content}>
-                    <div className={classes.appbarSpacer}/>
-                        <Switch>
-                            <Route exact path ="/" ><Resume/></Route>
-                            <Route exact path ="/blogs" ><Blog data={this.state.data1}/> </Route>
-                            <Route exact path = "/blog/new"> <AddPost handleHeadLine ={this.handleHeadLine}  handleValue={this.handleValue} handleSubmit={this.handleSubmit} /> </Route>
-                            <Route exact path = "/blogs/Name_of_the_Blog"> <Bloglist data={this.state.arr}/></Route>
-                        </Switch>
+                    <div className={classes.appbarSpacer} />
+                    <Switch>
+                        <Route exact path="/" ><Resume /></Route>
+                        <Route exact path="/blogs" ><Blog data={this.state.data1} /> </Route>
+                        <Route exact path="/blog/new"> <AddPost handleHeadLine={this.handleHeadLine} handleValue={this.handleValue} handleSubmit={this.handleSubmit} /> </Route>
+                        <Route exact path="/blogs/Name_of_the_Blog"> <Bloglist data={this.state.arr} /></Route>
+                    </Switch>
                 </main>
-                
+
             </div>
         );
     }

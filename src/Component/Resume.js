@@ -8,9 +8,9 @@ class Resume extends Component {
             <div className="root">
                 <h1><center>Resume</center></h1>
                 <div className="display">
-                    <div className="img" ><img src={img} height="200px" width="200px"/></div>
-                    
-                        <div className="blocking">
+                    <div className="img" ><img src={img} height="200px" width="200px" /></div>
+
+                    <div className="blocking">
                         <div className="heading">Personal Details</div>
                         <div className="content content1">Name Mehul Saxena</div>
                         <div >Career Objective</div>
@@ -19,9 +19,9 @@ class Resume extends Component {
                         <div className="content content1">Email: mehulsaxena45@gmail.com</div>
                     </div>
                     <div className="blocking">
-                    <div className="heading">Personal Projects</div>
-                    <div className="content">github profile :https://github.com/Beast2502</div>
-                </div>
+                        <div className="heading">Personal Projects</div>
+                        <div className="content">github profile :https://github.com/Beast2502</div>
+                    </div>
                 </div>
                 <div className="display">
                     <div className="blocking">
@@ -36,7 +36,7 @@ class Resume extends Component {
                         <div className="content">Pranveer Singh Institute Of Technology</div>
                         <div className="content">Computer Science and Engineering</div>
                         <div className="content">Percentage: 64.2%</div>
-                    
+
                     </div>
 
 
@@ -54,16 +54,16 @@ class Resume extends Component {
                     </div>
 
                     <div className="blocking">
-                    <div className="heading" >Part Time  -Full Stack MERN DEVELOPER at Applehant  (Feb,21-present)</div>
+                        <div className="heading" >Part Time  -Full Stack MERN DEVELOPER at Applehant  (Feb,21-present)</div>
                         <ol className="content">
                             <li>Creating Frontend and Backend in major for them.</li>
                             <li>Working on the project called Clubly having the integration of news portal and talent hunt .</li>
                         </ol>
 
                     </div>
-            
-                
-            </div>
+
+
+                </div>
             </div>
 
         );
